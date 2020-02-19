@@ -7,9 +7,14 @@ const contract = require('../validators/fluent-validator');
 exports.post = (req, res, next) => {
     let contract = contract.ValidationContract();
 
-    contract.hasMinLen(req.body.title, 3, '');
-    contract.hasMinLen(req.body.slug, 3, '');
-    contract.hasMinLen(req.body.description, 3, '');
+    contract.hasMinLen(req.body.title, 3, 'O título deve conter pelo menos 3 caracteres !');
+    contract.hasMinLen(req.body.slug, 7, 'O slug deve conter pelo menos 7 caracteres !');
+    contract.hasMinLen(req.body.description, 10, 'A descrição deve conter pelo menos 10 caracteres !');
+
+    //Se os dados forem inválidos.
+    if(!contract.isValid()) {
+        res.status(400).send(contract.errors()).end();
+    };
     
     var product = new Product(req.body);
     product
