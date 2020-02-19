@@ -2,11 +2,11 @@
 
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
-const contract = require('../validators/fluent-validator');
+const ValidationContract = require('../validators/fluent-validator');
 
 exports.post = (req, res, next) => {
-    let contract = contract.ValidationContract();
-
+    let contract = new ValidationContract();
+    
     contract.hasMinLen(req.body.title, 3, 'O título deve conter pelo menos 3 caracteres !');
     contract.hasMinLen(req.body.slug, 7, 'O slug deve conter pelo menos 7 caracteres !');
     contract.hasMinLen(req.body.description, 10, 'A descrição deve conter pelo menos 10 caracteres !');
