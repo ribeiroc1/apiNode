@@ -13,6 +13,7 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0-yv52c.mongodb.net/test?retr
 
 //Carrega os Models
 const Product = require('./models/product');
+const Customer = require('./models/customer');
 
 
 //Carregar Rotas
