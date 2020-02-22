@@ -1,7 +1,5 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/product-repository');
 
@@ -15,6 +13,7 @@ exports.post = async (req, res, next) => {
     //Se os dados forem inválidos.
     if (!contract.isValid()) {
         res.status(400).send(contract.errors()).end();
+        return;
     };
 
     try {
