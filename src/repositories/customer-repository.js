@@ -15,3 +15,12 @@ exports.get = async () => {
         }, 'name email password');
     return res;
 };
+
+exports.authenticate = async (data) => {
+    const res = await Customer
+        .findOne({
+            email: data.email,
+            password: data.password
+        });
+    return res;
+};
