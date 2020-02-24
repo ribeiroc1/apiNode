@@ -19,9 +19,15 @@ exports.get = async () => {
 exports.authenticate = async (data) => {
     const res = await Customer
         .findOne({
-            id: customer._id,
+            id: data._id,
             email: data.email,
             password: data.password
         });
+    return res;
+};
+
+exports.getById = async (id) => {
+    const res = await Customer
+        .findById(id);
     return res;
 };
